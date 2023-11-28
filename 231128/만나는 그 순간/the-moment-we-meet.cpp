@@ -38,14 +38,17 @@ int main() {
     vector<int> routeB(MAX, 0);
     route(routeB, m);
 
+    int answer = -2;
     for (int i = 0; i < MAX; i++)
     {
         if (routeA[i] == routeB[i])
         {
-            cout << i + 1;
+            answer = i;
             break;
         }
     }
+
+    cout << answer + 1;
 
     return 0;
 }
