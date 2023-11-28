@@ -32,15 +32,17 @@ int main() {
 
     int currentA = 0;
     int second = 0;
-    vector<int> routeA(MAX, 0);
+    vector<int> routeA(MAX, -1);
     route(routeA, n);
     
-    vector<int> routeB(MAX, 0);
+    vector<int> routeB(MAX, -1);
     route(routeB, m);
 
     int answer = -2;
     for (int i = 0; i < MAX; i++)
     {
+        if (routeA[i] < 0 || routeB[i] < 0) continue;
+
         if (routeA[i] == routeB[i])
         {
             answer = i;
