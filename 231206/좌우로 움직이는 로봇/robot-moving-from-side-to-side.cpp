@@ -15,7 +15,7 @@ int main() {
     int n, m;
     cin >> n >> m;
 
-    int totalTime = 0;
+    int totalTimeA = 0;
     vector<int> posA(1, 0);
     for (int i = 0; i < n; i++)
     {
@@ -25,11 +25,11 @@ int main() {
         int dir = d == 'L' ? -1 : 1;
         for (int j = 0; j < t; j++)
         {
-            posA.push_back(posA[totalTime++] + dir);
+            posA.push_back(posA[totalTimeA++] + dir);
         }
     }
 
-    totalTime = 0;
+    int totalTimeB = 0;
     vector<int> posB(1, 0);
     for (int i = 0; i < m; i++)
     {
@@ -39,10 +39,11 @@ int main() {
         int dir = d == 'L' ? -1 : 1;
         for (int j = 0; j < t; j++)
         {
-            posB.push_back(posB[totalTime++] + dir);
+            posB.push_back(posB[totalTimeB++] + dir);
         }
     }
 
+    int totalTime = totalTimeA > totalTimeB ? totalTimeA : totalTimeB;
     int answer = 0;
     for (int i = 2; i <= totalTime; i++)
     {
