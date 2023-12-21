@@ -6,12 +6,14 @@ int main() {
     cin >> n;
 
     const int MAX = 1000;
-    int dp[MAX + 1] = {0};
+    long long dp[MAX + 1] = {0};
     dp[2] = dp[3] = 1;
     for (int i = 4; i <= n; i++)
-        dp[i] = dp[i - 3] + dp[i - 2];
+    {
+        dp[i] = (dp[i - 3] + dp[i - 2]) % 10007;
+    }
 
-    cout << dp[n] % 10007;
+    cout << dp[n];
 
     return 0;
 }
