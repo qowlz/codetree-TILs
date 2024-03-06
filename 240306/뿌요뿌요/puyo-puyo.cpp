@@ -58,11 +58,8 @@ int main()
         for (int j = 0; j < N; j++)
         {
             auto size = getBlockSize(arr, i, j);
-            if (size >= 4)
-            {
-                ans1++;
-                ans2 = max(ans2, size);
-            }
+            ans2 = max(ans2, size);
+            if (size >= 4) ans1++;
         }
     }
 
