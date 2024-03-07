@@ -3,19 +3,7 @@ using namespace std;
 
 int N;
 
-int getDigit(int num)
-{
-    int cnt = 0;
-    while (num)
-    {
-        num /= 10;
-        cnt++;
-    }
-
-    return cnt;
-}
-
-bool isBeautiful(int num)
+bool isBeautiful(long long num)
 {
     int prev = 0;
     int cnt = 0;
@@ -32,14 +20,14 @@ bool isBeautiful(int num)
     return true;
 }
 
-int solve(int num)
+int solve(long long num, int digit)
 {
-    if (getDigit(num) == N) return isBeautiful(num) ? 1 : 0;
+    if (digit == N) return isBeautiful(num) ? 1 : 0;
 
     int ret = 0;
     for (int i = 1; i <= 4; i++)
     {
-        ret += solve(num * 10 + i);
+        ret += solve(num * 10 + i, digit + 1);
     }
 
     return ret;
@@ -47,8 +35,8 @@ int solve(int num)
 
 int main() {
     cin >> N;
-
-    cout << solve(0);
+    
+    cout << solve(0, 0);
 
     return 0;
 }
