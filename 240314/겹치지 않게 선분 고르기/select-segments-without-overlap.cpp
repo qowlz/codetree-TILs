@@ -25,9 +25,9 @@ bool isOverlapInPicks(int x1, int x2)
 
 int solve(int idx, int acc)
 {
-    if (idx >= N) return acc;
+    if (idx + 1 >= N) return acc;
 
-    int ret = acc;
+    int ret = 0;
     for (int i = idx + 1; i < N; i++)
     {
         if (isOverlapInPicks(lines[i].first, lines[i].second)) continue;
