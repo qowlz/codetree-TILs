@@ -9,7 +9,7 @@ vector<pair<int, int>> picked;
 
 bool isOverlap(int x1, int x2, int xx1, int xx2)
 {
-    return (xx1 >= x1 && xx1 <= x2) || (xx2 >= x1 && xx2 <= x2);
+    return !((xx1 < x1 && xx2 < x1) || (xx1 > x2 && xx2 > x2));
 }
 
 bool isOverlapInPicks(int x1, int x2)
@@ -27,7 +27,7 @@ int solve(int idx, int acc)
 {
     if (idx + 1 >= N) return acc;
 
-    int ret = 0;
+    int ret = acc;
     for (int i = idx + 1; i < N; i++)
     {
         if (isOverlapInPicks(lines[i].first, lines[i].second)) continue;
