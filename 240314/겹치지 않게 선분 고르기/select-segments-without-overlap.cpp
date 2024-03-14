@@ -28,7 +28,7 @@ int solve(int idx, int acc)
     if (idx >= N) return acc;
 
     int ret = acc;
-    for (int i = idx + 1; i < lines.size(); i++)
+    for (int i = idx + 1; i < N; i++)
     {
         if (isOverlapInPicks(lines[i].first, lines[i].second)) continue;
 
