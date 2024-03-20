@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <climits>
 using namespace std;
 
 #define MAX_N 6
@@ -34,7 +35,7 @@ int solve(int idx)
         return result;
     }
 
-    int ret = 0;
+    int ret = INT_MIN;
     for (int i = 1; i <= 4; i++)
     {
         a2n[idx] = i;
