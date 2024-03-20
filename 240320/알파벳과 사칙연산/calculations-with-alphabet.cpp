@@ -23,7 +23,7 @@ int solve(int idx, int acc)
 {
     if (idx + 2 >= ex.length()) return acc;
 
-    int ret = acc;
+    int ret = 0;
     for (int i = 1; i <= 4; i++)
     {
         char op = inRange(idx + 1) ? ex[idx + 1] : '+';
