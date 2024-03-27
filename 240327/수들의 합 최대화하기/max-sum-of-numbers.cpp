@@ -6,34 +6,20 @@ using namespace std;
 
 int N;
 vector<vector<int>> board;
-vector<pair<int, int>> pick;
-vector<bool> row;
 vector<bool> col;
 
-int solve()
+int solve(int row, int acc)
 {
-    if (pick.size() >= N)
-    {
-        int sum = 0;
-        for (int i = 0; i < pick.size(); i++)
-            sum += board[pick[i].first][pick[i].second];
-        
-        return sum;
-    }
-
-    int ret = INT_MIN;
+    if (row >= N) return acc;
+    
+    int ret = acc;
     for (int i = 0; i < N; i++)
     {
-        for (int j = 0; j < N; j++)
-        {
-            if (row[i] || col[j]) continue;
+        if (col[i]) continue;
 
-            row[i] = true; col[j] = true;
-            pick.push_back(make_pair(i, j));
-            ret = max(ret, solve());
-            row[i] = false; col[j] = false;
-            pick.pop_back();
-        }
+        col[i] = true;
+        ret = max(ret, solve(row + 1, acc + board[row][i]));
+        col[i] = false;
     }
 
     return ret;
@@ -44,7 +30,6 @@ int main() {
     cin >> N;
 
     board.assign(N, vector<int>(N, 0));
-    row.assign(N, false);
     col.assign(N, false);
     for (int i = 0; i < N; i++)
     {
@@ -54,7 +39,7 @@ int main() {
         }
     }
 
-    cout << solve();
+    cout << solve(0, 0);
 
     return 0;
 }
