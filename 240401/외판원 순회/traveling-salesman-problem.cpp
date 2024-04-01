@@ -11,13 +11,14 @@ vector<bool> visit;
 
 int solve(int acc)
 {
-    if (pick.size() >= N - 1) return acc + cost[pick.back()][0];
+    if (pick.size() >= N - 1)
+        return acc + cost[pick.back()][0];
 
     int current = pick.size() > 0 ? pick.back() : 0;
     int ret = INT_MAX;
     for (int i = 1; i < N; i++)
     {
-        if (visit[i]) continue;
+        if (visit[i] || !cost[current][i]) continue;
 
         pick.push_back(i); 
         visit[i] = true;
