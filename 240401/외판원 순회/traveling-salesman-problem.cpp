@@ -12,7 +12,7 @@ vector<bool> visit;
 int solve(int acc)
 {
     if (pick.size() >= N - 1)
-        return acc + cost[pick.back()][0];
+        return cost[pick.back()][0] > 0 ? acc + cost[pick.back()][0] : INT_MAX;
 
     int current = pick.size() > 0 ? pick.back() : 0;
     int ret = INT_MAX;
