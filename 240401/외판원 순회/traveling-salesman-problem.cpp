@@ -16,7 +16,7 @@ int solve(int acc)
 
     int current = pick.size() > 0 ? pick.back() : 0;
     int ret = INT_MAX;
-    for (int i = 1; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
         if (visit[i] || !cost[current][i]) continue;
 
@@ -39,6 +39,7 @@ int main() {
         for (int j = 0; j < N; j++)
             cin >> cost[i][j];
 
+    visit[0] = true;
     cout << solve(0);
 
     return 0;
