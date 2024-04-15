@@ -11,7 +11,7 @@ int main() {
     for (int i = 0; i < n; i++)
         cin >> arr[i];
     
-    int answer = 0;
+    int answer = 1;
     vector<int> dp(n, 1);
     for (int i = n - 2; i >= 0; i--)
     {
