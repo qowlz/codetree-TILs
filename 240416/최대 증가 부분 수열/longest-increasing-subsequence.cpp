@@ -11,7 +11,7 @@ int main() {
     for (int i = 0; i < n; i++)
         cin >> arr[i];
     
-    vector<int> dp(n, 0);
+    vector<int> dp(n, 1);
     dp[n - 1] = 1;
     for (int i = n - 2; i >= 0; i--)
     {
@@ -21,6 +21,8 @@ int main() {
 
             dp[i] = max(dp[i], dp[j] + 1);
         }
+        
+        // cout << "dp[" << i << "]: " << dp[i] << endl;
     }
 
     cout << dp[0];
