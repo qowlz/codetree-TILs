@@ -15,7 +15,11 @@ int solve(int idx, int acc, int score)
 {
     if (idx >= N) return score;
 
-    if (idx >= 0) acc += arr[idx];
+    if (idx >= 0)
+    {
+        acc += arr[idx];
+        // cout << "idx: " << idx << " acc: " << acc << endl;
+    }
 
     int get = 0;
     if (acc >= K)
@@ -25,10 +29,10 @@ int solve(int idx, int acc, int score)
         acc = 0;
     }
 
-    if (get > 0) 
+    if (get > 0 || idx < 0) 
         return max(solve(idx + 1, acc, score), solve(idx + 2, acc, score));
     else 
-        return solve(idx + 1, acc, score)
+        return solve(idx + 1, acc, score);
 }
 
 
