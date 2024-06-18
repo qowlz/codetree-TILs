@@ -7,32 +7,40 @@ using namespace std;
 int N, K;
 vector<int> arr;
 
-// 4 8
-// 1 5 3 2
-// 1 - 5 - 3 - 2
-// 5 - 3 - 2
-int solve(int idx, int acc, int score)
+// greedy?
+// greedy가 성립이 되려면 앞에 총합이 큰 숫자를 선택했을 때, 앞에서 큰 숫자를 썻으므로 뒤에서 손해를 보는 패턴이 눈에 보여야한다.
+// 4 4
+// 6 5 4 3 2 
+int solve(int idx, int score)
 {
     if (idx >= N) return score;
 
-    if (idx >= 0)
+    // 안 건너뛰는 경우
+    int a = 0;
+    int idxA = idx;
+    for (int i = idx; i < N; i++)
     {
-        acc += arr[idx];
-        // cout << "idx: " << idx << " acc: " << acc << endl;
+        if (a >= K) break;
+
+        a += arr[i];
+        idxA = i;
     }
 
-    int get = 0;
-    if (acc >= K)
+    // 건너뛰는 경우
+    int b = 0;
+    int idxB = idx;
+    for (int i = idx + 1; i < N; i++)
     {
-        get = acc - K;
-        score += get;
-        acc = 0;
+        if (b >= K) break;
+
+        b += arr[i];
+        idxB = i;
     }
 
-    if (get > 0 || idx < 0) 
-        return max(solve(idx + 1, acc, score), solve(idx + 2, acc, score));
-    else 
-        return solve(idx + 1, acc, score);
+    if (a > b)
+        return solve(idxA + 1, score + (a - K));
+    else
+        return solve(idxB + 1, score + (b - K));
 }
 
 
@@ -43,7 +51,7 @@ int main() {
     for (int i = 0; i < N; i++)
         cin >> arr[i];
     
-    cout << solve(-1, 0, 0);
+    cout << solve(0, 0);
 
     return 0;
 }
