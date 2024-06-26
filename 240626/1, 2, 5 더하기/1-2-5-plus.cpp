@@ -22,7 +22,7 @@ int main() {
         }
     }
 
-    cout << dp[N] << endl;
+    cout << dp[N] % MOD << endl;
 
 
     // dp[1] = 1 + 0
