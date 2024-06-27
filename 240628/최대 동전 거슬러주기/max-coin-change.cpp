@@ -19,14 +19,19 @@ int main() {
     dp[0] = 1;
     for (int i = 1; i <= M; i++)
     {
+        int maximum = 0;
         for (int j = 0; j < N; j++)
         {
             if (i >= coin[j] && dp[i - coin[j]] > 0)
-                dp[i] = max(dp[i], dp[coin[j]] + dp[i - coin[j]]);
+                maximum = max(maximum, dp[coin[j]] + dp[i - coin[j]]);
         }
+        dp[i] = maximum;
     }
 
-    cout << dp[M];
+    if (dp[M] == 0)
+        cout << "-1";
+    else
+        cout << dp[M];
 
     return 0;
 }
