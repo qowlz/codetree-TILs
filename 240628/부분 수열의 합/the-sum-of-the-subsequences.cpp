@@ -21,7 +21,7 @@ bool solve(int idx, int m)
         result = max(result, solve(i, sub));
     }
 
-    return false;
+    return result;
 }
 
 int main() {
