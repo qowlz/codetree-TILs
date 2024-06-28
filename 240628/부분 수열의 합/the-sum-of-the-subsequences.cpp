@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int N, M;
@@ -12,11 +13,12 @@ bool solve(int idx, int m)
     int sub = idx >= 0 ? m - nums[idx] : m;
     if (sub <= 0) return sub == 0;
 
+    bool result = false;
     for (int i = idx + 1; i < N; i++)
     {
         if (sub > maximum[i]) continue;
 
-        if (solve(i, sub)) return true;
+        result = max(result, solve(i, sub));
     }
 
     return false;
