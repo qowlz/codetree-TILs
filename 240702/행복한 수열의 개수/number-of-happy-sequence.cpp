@@ -18,38 +18,44 @@ int main() {
     // row
     for (int i = 0; i < n; i++)
     {
+        int maximum = 0;
         int cnt = 1;
         int prev = 0;
         for (int j = 0; j < n; j++)
         {
             if (arr[i][j] == prev) cnt++;
+            else maximum = max(maximum, cnt);
 
             prev = arr[i][j];
         }
 
-        if (cnt >= m)
+        maximum = max(maximum, cnt);
+
+        if (maximum >= m)
         {
             answer++;
-            // cout << "11" << endl;
         }
     }
 
     // col
     for (int i = 0; i < n; i++)
     {
+        int maximum = 0;
         int cnt = 1;
         int prev = 0;
         for (int j = 0; j < n; j++)
         {
             if (arr[j][i] == prev) cnt++;
+            else maximum = max(maximum, cnt);
 
             prev = arr[j][i];
         }
 
-        if (cnt >= m)
+        maximum = max(maximum, cnt);
+
+        if (maximum >= m)
         {
             answer++;
-            // cout << "22" << endl;
         }
     }
 
