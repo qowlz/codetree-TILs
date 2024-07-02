@@ -13,24 +13,24 @@ int main() {
         cin >> w[i] >> v[i];
     }
 
-    vector<vector<int>> dp(m + 1, vector<int>(n, 0));
+    vector<vector<int>> dp(n, vector<int>(m + 1, 0));
     for (int i = 1; i <= m; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            for (int k = 0; k < n; k++)
-            {
-                if(j == k || w[k] > i) continue;
+        dp[0][i] = i >= w[0] ? v[0] : 0;
 
-                dp[i][j] = max(dp[i][j], v[k] + dp[i - w[k]][k]);
-            }
+    for (int i = 1; i < n; i++)
+    {
+        for (int j = 1; j <= m; j++)
+        {
+            if (j >= w[i]) dp[i][j] = v[i] + dp[i - 1][j - w[i]];
+
+            dp[i][j] = max(dp[i][j], dp[i - 1][j]);
         }
     }
 
     int answer = 0;
     for (int i = 0; i < n; i++)
     {
-        answer = max(answer, dp[m][i]);
+        answer = max(answer, dp[i][m]);
     }
 
     cout << answer;
