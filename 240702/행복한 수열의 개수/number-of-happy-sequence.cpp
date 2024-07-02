@@ -23,8 +23,15 @@ int main() {
         int prev = 0;
         for (int j = 0; j < n; j++)
         {
-            if (arr[i][j] == prev) cnt++;
-            else maximum = max(maximum, cnt);
+            if (arr[i][j] == prev)
+            {
+                cnt++;
+            }
+            else
+            {
+                maximum = max(maximum, cnt);
+                cnt = 1;
+            }
 
             prev = arr[i][j];
         }
@@ -45,8 +52,15 @@ int main() {
         int prev = 0;
         for (int j = 0; j < n; j++)
         {
-            if (arr[j][i] == prev) cnt++;
-            else maximum = max(maximum, cnt);
+            if (arr[j][i] == prev)
+            {
+                cnt++;
+            }
+            else
+            {
+                maximum = max(maximum, cnt);
+                cnt = 1;
+            }
 
             prev = arr[j][i];
         }
