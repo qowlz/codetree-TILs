@@ -14,16 +14,15 @@ int main() {
     vector<int> dp(n + 1, INT_MIN);
     for (int i = 1; i <= n; i++)
     {
-        // i를 선택하는 경우
-        int cmp = dp[i - 1] == INT_MIN ? nums[i] : dp[i - 1] + nums[i];
-        dp[i] = max(cmp, nums[i]);
-
-
-        // i를 선택하지 않은 경우
-        dp[i] = max(dp[i], dp[i - 1]);
+        int a = dp[i - 1] == INT_MIN ? nums[i] : dp[i - 1] + nums[i];
+        dp[i] = max(a, nums[i]);
     }
 
-    cout << dp[n];
+    int answer = INT_MIN;
+    for (int i = 1; i <= n; i++)
+        answer = max(dp[i], answer);
+
+    cout << answer;
     
     return 0;
 }
