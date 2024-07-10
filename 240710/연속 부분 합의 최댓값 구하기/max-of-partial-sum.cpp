@@ -24,9 +24,6 @@ int main() {
     }
 
     cout << dp[n];
-
-    if (-2 > -1) cout << "!!";
-
     
     return 0;
 }
