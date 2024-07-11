@@ -12,18 +12,21 @@ int main() {
     for (int i = 1; i <= n; i++)
         cin >> coins[i];
     
-    vector<vector<int>> dp(n + 1, vector<int>(ACT_MAX + 1, 0));
+    vector<vector<int>> dp(n + 1, vector<int>(ACT_MAX + 1, -1));
+    dp[0][0] = 0;
     for (int i = 1; i <= n; i++)
     {
         for (int j = 0; j <= ACT_MAX; j++)
         {
             // 1계단을 오르는 경우
-            if (j > 0 && i >= j)
+            if (j > 0 && i >= j && dp[i - 1][j - 1] >= 0)
                 dp[i][j] = max(dp[i][j], coins[i] + dp[i - 1][j - 1]);
 
             // 2계단을 오르는 경우
-            if(i >= 2)
+            if(i >= 2 && dp[i - 2][j] >= 0)
                 dp[i][j] = max(dp[i][j], coins[i] + dp[i - 2][j]);
+
+            // cout << "dp[" << i << "][" << j << "]: " << dp[i][j] << endl;
         }
     }
 
