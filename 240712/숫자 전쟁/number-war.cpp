@@ -78,7 +78,7 @@ int main() {
         {
             int add = my[j] < other[i] ? my[j] : 0;
 
-            if (other[i - 1] && other[i - 1] < my[j])
+            if (other[i - 1] < my[j])
                 dp[i][j] = add + dp[i - 1][j];
             
             if (my[j - 1] < other[i])
