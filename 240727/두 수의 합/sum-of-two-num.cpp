@@ -11,14 +11,19 @@ int main() {
     {
         int num;
         cin >> num;
-        m[num] += 1;
+        m[num]++;
     }
 
     int answer = 0;
     for (const auto& item : m)
     {
-        long long sub = k - item.first;   
-        if (m[sub]) answer += m[sub];
+        long long sub = k - item.first;
+        cout << "key: " << item.first << ", sub: " << sub << endl;
+        if (m[sub])
+        {
+            cout << "calc: " << item.second * m[sub] << endl;
+            answer += item.second * m[sub];
+        }
     }
 
     cout << answer / 2;
