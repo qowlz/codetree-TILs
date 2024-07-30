@@ -10,26 +10,30 @@ int main() {
     vector<int> arr(n, 0);
     for (int i = 0; i < n; i++)
         cin >> arr[i];
+
+
+    // 2 5
+    // 5 1
     
     int answer = INT_MAX;
-    for (int i = 0; i < n; i++)
+    int i, j = 0;
+    int sum = 0;
+    while (i < n || j < n)
     {
-        int sum = 0;
-        int j = i;
-        while (j < n)
+        if (sum < s && j < n)
+            sum += arr[j++];
+        else if (i < n)
+            sum -= arr[i++];
+        
+        if (sum >= s)
         {
-            sum += arr[j];
-            if (sum >= s)
-            {
-                answer = min(answer, j - i + 1);
-                break;
-            }
-            else
-            {
-                j++;
-            }
+            answer = min(answer, j - i);
         }
     }
+
+    // 3 5
+    // 5 1 6
+    // 
 
     cout << (answer == INT_MAX ? -1 : answer);
 
