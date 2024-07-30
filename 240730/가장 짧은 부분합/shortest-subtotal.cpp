@@ -14,8 +14,8 @@ int main() {
     int answer = INT_MAX;
     for (int i = 0; i < n; i++)
     {
-        int sum = arr[i];
-        int j = i + 1;
+        int sum = 0;
+        int j = i;
         while (j < n)
         {
             sum += arr[j];
