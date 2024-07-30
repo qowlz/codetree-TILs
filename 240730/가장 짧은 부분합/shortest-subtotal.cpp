@@ -19,7 +19,7 @@ int main() {
         while (j < n)
         {
             sum += arr[j];
-            if (sum > s)
+            if (sum >= s)
             {
                 answer = min(answer, j - i + 1);
                 break;
