@@ -19,12 +19,8 @@ int main() {
     for (int i = 0; i < n; i++)
     {
         while (j + 1 < n && !count[arr[j + 1]])
-        {
-            j += 1;
-            count[arr[j]] += 1;
-        }
+            count[arr[++j]] += 1;
 
-        // cout << "i: " << i << ", j: " << j << endl;
         answer = max(answer, j - i + 1);
 
         count[arr[i]] -= 1;
