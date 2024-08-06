@@ -15,11 +15,8 @@ int main() {
     int answer = 0;
     for (int i = 0; i < n; i++)
     {
-        while (j < n)
-        {
-            if (sum >= m) break;
-            else sum += arr[j++];
-        }
+        while (j < n && sum < m)
+            sum += arr[j++];
 
         if (sum == m) answer++;
 
