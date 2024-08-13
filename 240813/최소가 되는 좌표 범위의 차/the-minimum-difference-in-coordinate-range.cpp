@@ -1,33 +1,69 @@
 #include <iostream>
 #include <vector>
-#include <climits>
 #include <algorithm>
+#include <climits>
+#include <stack>
 using namespace std;
 
 int N, D;
 
-int getDiffY(int minY, int maxY)
-{
-    if (minY == INT_MAX || maxY == INT_MIN) return 0;
+pair<int, int> minP {-1, INT_MAX};
+pair<int, int> maxP {-1, INT_MIN};
+stack<pair<int, int>> minStack;
+stack<pair<int, int>> maxStack;
 
-    return abs(maxY - minY);
+void setMinY(int idx, int value)
+{
+    if (minP.second < value) return;
+
+    minStack.push(minP);
+    minP = {idx, value};
 }
 
-void updateMinY(int test, int& minY, int& prev)
+void setMaxY(int idx, int value)
 {
-    if (minY <= test) return;
+    if (maxP.second > value) return;
 
-    prev = minY;
-    minY = test;
+    maxStack.push(maxP);
+    maxP = {idx, value};
 }
 
-void updateMaxY(int test, int& maxY, int& prev)
+int getDiffY()
 {
-    if (maxY >= test) return;
+    if (minP.second == INT_MAX || maxP.second == INT_MIN) return 0;
 
-    prev = maxY;
-    maxY = test;
+    return abs(maxP.second - minP.second);
 }
+
+
+pair<int, int> getPrevMin(int i, int j)
+{
+    while (!minStack.empty())
+    {
+        auto p = minStack.top();
+        minStack.pop();
+        if (p.first < i || p.first > j) continue;
+
+        return p;
+    }
+
+    return {-1, INT_MAX};
+}
+
+pair<int, int> getPrevMax(int i, int j)
+{
+    while (!maxStack.empty())
+    {
+        auto p = maxStack.top();
+        maxStack.pop();
+        if (p.first < i || p.first > j) continue;
+
+        return p;
+    }
+
+    return {-1, INT_MIN};
+}
+
 
 int main() {
     cin >> N >> D;
@@ -42,27 +78,22 @@ int main() {
 
     sort(arr.begin(), arr.end());
 
-    int j = -1;
-    int minY = INT_MAX;
-    int prevMin = INT_MAX;
-    int maxY = INT_MIN;
-    int prevMax = INT_MIN;
+    int j = 0;
     int answer = INT_MAX;
     for (int i = 0; i < N; i++)
     {
-        while (j + 1 < N && getDiffY(minY, maxY) < D)
+        while (j + 1 < N && getDiffY() < D)
         {
             j += 1;
-            updateMinY(arr[j].second, minY, prevMin);
-            updateMaxY(arr[j].second, maxY, prevMax);
+            setMinY(j, arr[j].second);
+            setMaxY(j, arr[j].second);
         }
 
-        if (getDiffY(minY, maxY) >= D)
+        if (getDiffY() >= D)
             answer = min(answer, arr[j].first - arr[i].first);
 
-
-        minY = prevMin;
-        maxY = prevMax;
+        if (minP.first == i) minP = getPrevMin(i + 1, j);
+        if (maxP.first == i) maxP = getPrevMax(i + 1, j);
     }
 
     if (answer == INT_MAX)
