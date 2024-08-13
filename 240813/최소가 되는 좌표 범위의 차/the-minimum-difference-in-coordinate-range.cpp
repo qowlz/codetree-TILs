@@ -78,7 +78,7 @@ int main() {
 
     sort(arr.begin(), arr.end());
 
-    int j = 0;
+    int j = -1;
     int answer = INT_MAX;
     for (int i = 0; i < N; i++)
     {
@@ -88,6 +88,9 @@ int main() {
             setMinY(j, arr[j].second);
             setMaxY(j, arr[j].second);
         }
+
+        // cout << "i: " << i << ", j: " << j << endl;
+        // cout << "maxY: " << maxP.second << ", minY: " << minP.second << endl;
 
         if (getDiffY() >= D)
             answer = min(answer, arr[j].first - arr[i].first);
