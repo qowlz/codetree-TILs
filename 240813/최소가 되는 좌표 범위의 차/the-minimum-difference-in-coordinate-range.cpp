@@ -82,6 +82,9 @@ int main() {
     int answer = INT_MAX;
     for (int i = 0; i < N; i++)
     {
+        setMinY(i, arr[i].second);
+        setMaxY(i, arr[i].second);
+
         while (j + 1 < N && getDiffY() < D)
         {
             j += 1;
