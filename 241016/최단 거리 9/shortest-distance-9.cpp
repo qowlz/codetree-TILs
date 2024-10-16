@@ -15,9 +15,10 @@ int main() {
     vector<pair<int, int>> arr[MAX_N + 1];
     while (m--)
     {
-        int s, e, d;
-        cin >> s >> e >> d;
-        arr[s].push_back(make_pair(e, d));
+        int s, e, w;
+        cin >> s >> e >> w;
+        arr[s].push_back(make_pair(e, w));
+        arr[e].push_back(make_pair(s, w));
     }
 
     int a, b;
