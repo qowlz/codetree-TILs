@@ -35,12 +35,10 @@ int main() {
         {
             if (e == s) continue;
             if (arr[s][e] == INF) continue;
-
-            if (d + arr[s][e] < ans[e])
-            {
-                ans[e] = d + arr[s][e];
-                pq.push(make_pair(ans[e], e));
-            }
+            if (d + arr[s][e] >= ans[e]) continue;
+            
+            ans[e] = d + arr[s][e];
+            pq.push(make_pair(ans[e], e));
         }
     }
 
