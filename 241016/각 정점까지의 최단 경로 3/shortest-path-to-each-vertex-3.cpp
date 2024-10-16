@@ -45,7 +45,7 @@ int main() {
     }
 
     for (int i = 2; i <= n; i++)
-        cout << ans[i] << '\n';
+        cout << (ans[i] == INF ? -1 : ans[i]) << '\n';
 
     return 0;
 }
