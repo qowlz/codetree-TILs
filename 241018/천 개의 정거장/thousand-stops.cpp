@@ -50,8 +50,6 @@ int main() {
         tie(c, v, l) = pq.top();
         pq.pop();
 
-        if (c != dist[v]) continue;
-
         for (int i = 0; i < g[v].size(); i++)
         {
             int to, fee, to_l;
