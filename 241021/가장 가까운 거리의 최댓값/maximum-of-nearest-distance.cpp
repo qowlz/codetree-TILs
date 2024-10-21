@@ -60,6 +60,8 @@ int main() {
     int ans = 0;    
     for (int s = 1; s <= n; s++)
     {
+        if (s == a || s == b || s == c) continue;
+
         auto dist = dijkstra(s);
         int closest = min(dist[a], dist[b]);
         closest = min(closest, dist[c]);
