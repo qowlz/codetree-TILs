@@ -62,7 +62,7 @@ int main() {
     for (int i = 0; i < 3; i++)
     {
         auto dist = dijkstra(arr[i]);
-        for (int j = 1; j < n; j++)
+        for (int j = 1; j <= n; j++)
             candidates[j] = min(candidates[j], dist[j]);
     }
 
