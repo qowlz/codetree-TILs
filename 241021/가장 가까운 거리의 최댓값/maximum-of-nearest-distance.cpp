@@ -57,15 +57,19 @@ int main() {
         g[e].push_back(make_pair(s, w));
     }
 
-    int ans = 0;    
-    for (int s = 1; s <= n; s++)
+    vector<int> candidates(n + 1, INF);
+    int arr[3] = {a, b, c};   
+    for (int i = 0; i < 3; i++)
     {
-        if (s == a || s == b || s == c) continue;
+        auto dist = dijkstra(arr[i]);
+        for (int j = 1; j < n; j++)
+            candidates[j] = min(candidates[j], dist[j]);
+    }
 
-        auto dist = dijkstra(s);
-        int closest = min(dist[a], dist[b]);
-        closest = min(closest, dist[c]);
-        ans = max(ans, closest);
+    int ans = 0;
+    for (const auto& c : candidates)
+    {
+        if (c != INF) ans = max(ans, c);
     }
 
     cout << ans;
