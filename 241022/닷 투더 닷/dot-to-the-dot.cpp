@@ -55,7 +55,7 @@ int main() {
         }
     }
 
-    cout << dist[n];
+    cout << (int)dist[n];
 
     return 0;
 }
