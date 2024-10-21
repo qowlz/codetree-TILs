@@ -24,12 +24,12 @@ int main() {
         g[j].push_back(make_tuple(i, l, c));
     }
 
-    vector<float> dist(n + 1, INF);
-    dist[1] = 0.0f;
+    vector<pair<float, int>> dist(n + 1, make_pair(INF, INF));
+    dist[1] = make_pair(0.0f, 0);
 
     priority_queue<Tuple, vector<Tuple>, greater<Tuple>> pq;
     for (int i = 1; i <= n; i++)
-        pq.push(make_tuple(dist[i], i, 0, 0));
+        pq.push(make_tuple(dist[i].first, i, 0, 0));
     
     while (!pq.empty())
     {
@@ -38,24 +38,28 @@ int main() {
         tie(t, u, a, b) = pq.top();
         pq.pop();
 
-        if (abs(t - dist[u] > numeric_limits<float>::epsilon())) continue;
+        if (abs(t - dist[u].first > numeric_limits<float>::epsilon())) continue;
 
+        // cout << "u: " << u << ", b: " << b << endl;
         for (int i = 0; i < g[u].size(); i++)
         {
             int v, l, c;
             tie(v, l, c) = g[u][i];
+            // cout << '\t' << "v: " << v << endl;
 
             int na = a ? min(a, c) : c;
             int nb = b + l;
             float nt = nb + (float)(x / na);
-            if (nt >= dist[v]) continue;
+            // cout << '\t' << na << ' ' << nb << ' ' << nt << endl;
+            if (nt > dist[v].first) continue;
+            if (nt == dist[v].first && nb >= dist[v].second) continue;
 
-            dist[v] = nt;
+            dist[v] = make_pair(nt, nb);
             pq.push(make_tuple(nt, v, na, nb));
         }
     }
 
-    cout << (int)dist[n];
+    cout << (int)dist[n].first;
 
     return 0;
 }
