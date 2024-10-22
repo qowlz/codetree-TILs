@@ -5,7 +5,7 @@ using namespace std;
 
 unsigned long long m;
 
-unsigned long long solve(int x)
+unsigned long long solve(unsigned long long x)
 {
     unsigned long long left = 1, right = m;
     unsigned long long cnt = 0;
