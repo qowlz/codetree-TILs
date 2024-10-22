@@ -16,7 +16,7 @@ unsigned long long solve(int x)
         unsigned long long mid = (left + right) / 2;
         if (mid == x) break;
 
-        if (mid >= x)
+        if (mid > x)
             right = mid - 1;
         else
             left = mid + 1;
