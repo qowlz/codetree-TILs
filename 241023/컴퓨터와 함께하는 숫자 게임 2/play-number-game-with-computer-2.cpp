@@ -3,17 +3,17 @@
 #include <algorithm>
 using namespace std;
 
-long long m;
+unsigned long long m;
 
-long long solve(int x)
+unsigned long long solve(int x)
 {
-    long long left = 1, right = m;
-    long long cnt = 0;
+    unsigned long long left = 1, right = m;
+    unsigned long long cnt = 0;
     while (left <= right)
     {
         cnt++;
 
-        long long mid = (left + right) / 2;
+        unsigned long long mid = (left + right) / 2;
         if (mid == x) break;
 
         if (mid >= x)
@@ -29,12 +29,12 @@ int main()
 {
     cin >> m;
 
-    long long a, b;
+    unsigned long long a, b;
     cin >> a >> b;
 
-    long long min_ans = LLONG_MAX;
-    long long max_ans = 0;
-    for (long long i = a; i <= b; i++)
+    unsigned long long min_ans = ULLONG_MAX;
+    unsigned long long max_ans = 0;
+    for (unsigned long long i = a; i <= b; i++)
     {
         auto c = solve(i);
         min_ans = min(min_ans, c);
