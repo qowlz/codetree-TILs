@@ -38,10 +38,15 @@ int main() {
         long long mid = (left + right) / 2;
         
         long long order = mid - getThree(mid) - getFive(mid);
-        if (order >= n)
+        if (order == n)
+        {
+            ans = mid;
+            break;
+        }
+
+        if (order > n)
         {
             right = mid - 1;
-            ans = mid;
         }
         else
             left = mid + 1;
