@@ -18,11 +18,16 @@ int main() {
     while (left <= right)
     {
         long long mid = (left + right) / 2;
+        auto order = getOrder(mid);
+        if (order == n)
+        {
+            ans = mid;
+            break;
+        }
 
-        if (getOrder(mid) >= n)
+        if (order > n)
         {
             right = mid - 1;
-            ans = min(ans, mid);
         }
         else
             left = mid + 1;
