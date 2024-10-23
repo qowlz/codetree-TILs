@@ -13,7 +13,7 @@ int main() {
     int n;
     cin >> n;
     
-    int left = 1, right = INT_MAX;
+    long long left = 1, right = INT_MAX;
     long long ans = INT_MAX;
     while (left <= right)
     {
