@@ -2,13 +2,15 @@
 #include <climits>
 using namespace std;
 
-int getMoo(int num)
+long long getOrder(long long num)
 {
-    return num / 3 + num / 5 - num / 15;
+    long long moo = num / 3 + num / 5 - num / 15;
+
+    return num - moo;
 }
 
 int main() {
-    long long n;
+    int n;
     cin >> n;
     
     int left = 1, right = INT_MAX;
@@ -17,8 +19,7 @@ int main() {
     {
         long long mid = (left + right) / 2;
 
-        long long order = mid - getMoo(mid);
-        if (order >= n)
+        if (getOrder(mid) >= n)
         {
             right = mid - 1;
             ans = min(ans, mid);
