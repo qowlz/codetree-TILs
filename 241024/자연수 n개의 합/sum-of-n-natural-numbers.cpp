@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    int s;
+    long long s;
     cin >> s;
 
     long long left = 1, right = 1e10;
