@@ -8,7 +8,7 @@ int getMoo(int num)
 }
 
 int main() {
-    int n;
+    long long n;
     cin >> n;
     
     int left = 1, right = INT_MAX;
@@ -16,8 +16,8 @@ int main() {
     while (left <= right)
     {
         long long mid = (left + right) / 2;
-        long long order = mid - getMoo(mid);
 
+        long long order = mid - getMoo(mid);
         if (order >= n)
         {
             right = mid - 1;
