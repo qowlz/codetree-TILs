@@ -12,20 +12,16 @@ int main() {
     cin >> n;
     
     int left = 1, right = INT_MAX;
-    long long ans = 0;
+    long long ans = INT_MAX;
     while (left <= right)
     {
         long long mid = (left + right) / 2;
         long long order = mid - getMoo(mid);
-        if (order == n)
-        {
-            ans = mid;
-            break;
-        }
 
-        if (order > n)
+        if (order >= n)
         {
             right = mid - 1;
+            ans = min(ans, mid);
         }
         else
             left = mid + 1;
