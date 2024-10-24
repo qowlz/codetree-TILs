@@ -6,9 +6,9 @@ using namespace std;
 int n, m;
 vector<int> arr;
 
-bool isPossible(int t)
+bool isPossible(long long t)
 {
-    int cnt = 0;
+    long long cnt = 0;
     for (int i = 0; i < m; i++)
         cnt += t / arr[i];
     
@@ -22,14 +22,12 @@ int main() {
     arr.assign(m, 0);
     for (int i = 0; i < m; i++)
         cin >> arr[i];
-
     
-    int left = 0, right = 1e9;
-    int ans = INT_MAX;
+    long long left = 1, right = 1e15;
+    long long ans = right + 1;
     while (left <= right)
     {
-        int mid = (left + right) / 2;
-        
+        long long mid = (left + right) / 2;
         if (isPossible(mid))
         {
             right = mid - 1;
