@@ -60,7 +60,7 @@ int main() {
     for (int i = 1; i <= n; i++)
         cin >> d[i];
     
-    int left = 1, right = 10; // 10000
+    int left = 1, right = 10000; // 10000
     int ans = right;
     while(left <= right)
     {
