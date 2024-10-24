@@ -47,7 +47,7 @@ int main() {
     
     sort(arr.begin(), arr.end());
     
-    long long left = 0, right = 100; // 1e18
+    long long left = 0, right = 1e18; // 1e18
     long long ans = 0;
     while (left <= right)
     {
