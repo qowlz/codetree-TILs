@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 using namespace std;
 
 int main() {
@@ -10,7 +11,7 @@ int main() {
     for (int i = 0; i < n; i++)
         cin >> arr[i];
 
-    int ans = 0;
+    int ans = INT_MIN;
     int sum = 0;
     for (int i = 0; i < n; i++)
     {
