@@ -18,16 +18,11 @@ bool isOutOfRange(int x, int y)
 
 void solve(int curX, int curY)
 {
-    // cout << "start: " << curX << ", " << curY << " value: " << board[curX][curY] << endl;
-    // cout << "cnt: " << cnt << endl;
-
     // 이동가능한 후보들 선택
     vector<pair<int, int>> c;
     int nx = curX + dx[dir[curX][curY]], ny = curY + dy[dir[curX][curY]];
-    // cout << "\tcc: " << nx << ", " << ny << " dir: " << dir[curX][curY] << endl;
     while (!isOutOfRange(nx, ny))
     {
-        // cout << "\tcheck: " << nx << ", " << ny << " value: " << board[nx][ny] << endl;
         if (!visit[nx][ny] && board[nx][ny] > board[curX][curY]) 
             c.push_back({nx, ny});
 
@@ -49,7 +44,6 @@ void solve(int curX, int curY)
         visit[x][y] = true;
         cnt++;
 
-        // cout << "\tcandidate: " << x << ", " << y << endl;
         solve(x, y);
 
         visit[x][y] = false;
