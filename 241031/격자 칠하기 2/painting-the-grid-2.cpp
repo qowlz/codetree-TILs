@@ -9,13 +9,13 @@ using namespace std;
 
 int n;
 vector<vector<int>> arr;
+vector<vector<bool>> visit;
 
 int dx[] = {1, -1, 0, 0};
 int dy[] = {0, 0, -1, 1};
 
 int getTotal(int sy, int sx, int d)
 {
-    vector<vector<bool>> visit(n, vector<bool>(n, false));
     visit[sy][sx] = true;
 
     int total = 0;
@@ -46,6 +46,7 @@ int getTotal(int sy, int sx, int d)
 bool isPossible(int mid)
 {
     int best = 0;
+    visit.assign(n, vector<bool>(n, false));
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             best = max(best, getTotal(i, j, mid));
