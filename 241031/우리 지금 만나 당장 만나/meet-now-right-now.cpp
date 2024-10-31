@@ -12,11 +12,8 @@ int slow_idx;
 
 bool isPossible(double t)
 {
-    int l = 1;
-    if (arr[slow_idx] - t * v[slow_idx] > 1) l = arr[slow_idx] - (int)(t * v[slow_idx]);
-
-    int r = 1e9;
-    if (arr[slow_idx] + t * v[slow_idx] < 1e9) r = arr[slow_idx] + (int)(t * v[slow_idx]);
+    double l = max((double)0, (double)arr[slow_idx] - t * v[slow_idx]);
+    double r = min((double)1e9, (double)arr[slow_idx] + t * v[slow_idx]);
 
     double l_best = 0;
     double r_best = 0;
@@ -62,7 +59,6 @@ int main() {
     while (left <= right)
     {
         double mid = (left + right) / 2;
-
         if (isPossible(mid))
         {
             right = mid - 0.00001;
