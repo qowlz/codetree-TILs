@@ -57,7 +57,7 @@ int main() {
         }
     }
 
-    double left = 0, right = 10; // 1e9
+    double left = 0, right = 1e9;
     double ans = right;
     while (left <= right)
     {
