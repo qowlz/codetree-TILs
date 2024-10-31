@@ -33,6 +33,11 @@ int main() {
     cout.precision(4);
 
     cin >> n;
+    if(n == 1)
+    {
+        cout << "0.0000";
+        return 0;
+    }
 
     arr.assign(n, 0);
     for (int i = 0; i < n; i++)
