@@ -14,8 +14,11 @@ int main() {
     unordered_set<char> s;
     for (int i = 0; i < str.length(); i++)
     {
-        while (j < str.length() && s.size() <= k)
+        while (j < str.length())
         {
+            int kind = s.find(str[j]) == s.end() ? s.size() + 1 : s.size();
+            if (kind > k) break;
+
             s.insert(str[j]);
             j++;
         }
