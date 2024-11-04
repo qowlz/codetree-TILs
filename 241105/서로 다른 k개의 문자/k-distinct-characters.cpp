@@ -1,31 +1,30 @@
 #include <iostream>
-#include <vector>
-#include <unordered_set>
+#include <string>
+#include <unordered_map>
 using namespace std;
 
-string str;
-int k;
-
 int main() {
-    cin >> str >> k;
+    string s;
+    int k;
+    cin >> s >> k;
 
     int ans = 0;
-    int j = 0;
-    unordered_set<char> s;
-    for (int i = 0; i < str.length(); i++)
+    int j = -1;
+    unordered_map<char, int> m;
+    m.clear();
+    for (int i = 0; i < s.length(); i++)
     {
-        while (j < str.length())
+        while(j + 1 < s.length())
         {
-            int kind = s.find(str[j]) == s.end() ? s.size() + 1 : s.size();
+            int kind = m.find(s[j + 1]) == m.end() ? m.size() + 1: m.size();
             if (kind > k) break;
 
-            s.insert(str[j]);
-            j++;
+            m[s[++j]]++;
         }
 
-        ans = max(ans, j - i);
+        ans = max(ans, j - i + 1);
 
-        s.erase(str[i]);
+        if (--m[s[i]] <= 0) m.erase(s[i]);
     }
 
     cout << ans;
