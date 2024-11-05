@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -7,12 +8,14 @@ int n, k;
 vector<int> arr;
 
 int main() {
-    cin >> n >> k;
+    // cin >> n >> k;
+    scanf("%d %d", &n, &k);
 
     arr.assign(n, 0);
     for (int i = 0; i < n; i++)
     {
-        cin >> arr[i];
+        scanf("%d", &arr[i]);
+        // cin >> arr[i];
     }
 
     sort(arr.begin(), arr.end());
@@ -40,7 +43,8 @@ int main() {
         }
     }
 
-    cout << ans;
+    // cout << ans;
+    printf("%d", ans);
 
     return 0;
 }
