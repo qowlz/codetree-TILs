@@ -24,7 +24,7 @@ int main() {
     {
         while(j + 1 < n && arr[j + 1] - arr[i] <= k) j++;
 
-        l[j] = max(l[j], j - i + 1);
+        l[i] = max(l[i], j - i + 1);
 
         groups.push_back({i, j});
     }
@@ -33,8 +33,8 @@ int main() {
     for (int i = 0; i < n; i++)
     {
         int a = groups[i].second - groups[i].first + 1;
-        if (groups[i].first > 0)
-            ans = max(ans, a + l[groups[i].first - 1]);
+        if (groups[i].second < n)
+            ans = max(ans, a + l[groups[i].second + 1]);
         else
             ans = max(ans, a);
     }
