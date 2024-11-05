@@ -8,13 +8,11 @@ int n, d;
 vector<pair<int, int>> points;
 map<int, int> m;
 
-bool satisfy(int j)
+int getDiff()
 {
-    if (m.empty()) return true;
+    if (m.empty()) return 0;
 
-    int maxY = max(points[j].second, m.rbegin()->first);
-    int minY = min(points[j].second, m.begin()->first);
-    return abs(maxY - minY) >= d;
+    return abs(m.rbegin()->first - m.begin()->first);
 }
 
 int main() {
@@ -33,16 +31,13 @@ int main() {
     int ans = 1e7;
     for (int i = 0; i < n; i++)
     {
-        while(j + 1 < n && satisfy(j + 1))
+        while(j + 1 < n && getDiff() < d)
         {
             m[points[++j].second]++;
-
-            if (m.size() > 1)
-            {
-                ans = min(ans, points[j].first - points[i].first);
-                // cout << "i: " << i << ", j: " << j << endl;
-            }
         }
+
+        if (getDiff() >= d) 
+            ans = min(ans, points[j].first - points[i].first);
 
         if (--m[points[i].second] <= 0)
             m.erase(points[i].second);
@@ -52,8 +47,6 @@ int main() {
         cout << "-1";
     else
         cout << ans;
-
-
 
     return 0;
 }
