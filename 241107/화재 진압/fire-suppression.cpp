@@ -13,13 +13,6 @@ int getDist(int a, int b)
     return abs(b - a);
 }
 
-bool isNear(int i, int j)
-{
-    if (i + 1 >= m) return true;
-    
-    return getDist(station[i], arr[j]) < getDist(station[i + 1], arr[j]);
-}
-
 int main() {
     cin >> n >> m;
 
@@ -36,18 +29,15 @@ int main() {
 
     int j = -1;
     int ans = 0;
-    for (int i = 0; i < m; i++)
+    for (int i = 0; i < n; i++)
     {
-        while (j + 1 < n && isNear(i, j + 1))
+        int minD = j < 0 ? INT_MAX : getDist(arr[i], station[j]);
+        while (j + 1 < m && getDist(arr[i], station[j + 1]) <= minD)
         {
-            j++;
+            minD = getDist(arr[i], station[++j]);
         }
 
-        // cout << "i: " << i << ", j: " << j << endl;
-
-        if(j >= 0 && j < n) ans = max(ans, getDist(station[i], arr[j]));
-
-        j++;
+        ans = max(ans, getDist(arr[i], station[j]));
     }
 
     cout << ans;
