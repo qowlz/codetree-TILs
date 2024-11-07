@@ -4,20 +4,30 @@
 #include <climits>
 using namespace std;
 
+int n, m;
+vector<int> station;
+vector<int> arr;
+
 int getDist(int a, int b)
 {
     return abs(b - a);
 }
 
+bool isNear(int i, int j)
+{
+    if (i + 1 >= m) return true;
+    
+    return getDist(station[i], arr[j]) < getDist(station[i + 1], arr[j]);
+}
+
 int main() {
-    int n, m;
     cin >> n >> m;
 
-    vector<int> arr(n, 0);
+    arr.assign(n, 0);
     for (int i = 0; i < n; i++)
         cin >> arr[i];
 
-    vector<int> station(m, 0);
+    station.assign(m, 0);
     for (int i = 0; i < m; i++)
         cin >> station[i];
 
@@ -28,14 +38,14 @@ int main() {
     int ans = 0;
     for (int i = 0; i < m; i++)
     {
-        int maxP = i + 1 < m ? station[i] + getDist(station[i], station[i + 1]) / 2 : INT_MAX;
-        while (j + 1 < n && arr[j + 1] <= maxP)
+        while (j + 1 < n && isNear(i, j + 1))
         {
             j++;
         }
 
-        bool isNear = i - 1 < 0 ? true : getDist(station[i], arr[j]) < getDist(station[i - 1], arr[j]);
-        if (isNear) ans = max(ans, getDist(station[i], arr[j]));
+        if(j < n) ans = max(ans, getDist(station[i], arr[j]));
+
+        j++;
     }
 
     cout << ans;
