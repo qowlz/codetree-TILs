@@ -34,7 +34,8 @@ int main() {
             j++;
         }
 
-        ans = max(ans, getDist(station[i], arr[j]));
+        bool isNear = i - 1 < 0 ? true : getDist(station[i], arr[j]) < getDist(station[i - 1], arr[j]);
+        if (isNear) ans = max(ans, getDist(station[i], arr[j]));
     }
 
     cout << ans;
