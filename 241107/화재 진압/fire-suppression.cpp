@@ -43,7 +43,9 @@ int main() {
             j++;
         }
 
-        if(j < n) ans = max(ans, getDist(station[i], arr[j]));
+        // cout << "i: " << i << ", j: " << j << endl;
+
+        if(j >= 0 && j < n) ans = max(ans, getDist(station[i], arr[j]));
 
         j++;
     }
