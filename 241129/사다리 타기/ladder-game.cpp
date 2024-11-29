@@ -42,14 +42,10 @@ void solve(const int& maxPick, int start)
 {
     if (picked.size() == maxPick)
     {
-        // cout << "picked: " << endl;
         for (auto& idx : picked)
         {
             int h, from, to;
             tie(h, from, to) = lines[idx];
-            // cout << "\tidx: " << idx << endl;
-            // cout << "\th: " << h << ", from: " << from << ", to: " << to << endl;
-            // cout << "=====================" << endl;
 
             exclude[h][from] = true;
             exclude[h][to] = true;
@@ -66,8 +62,7 @@ void solve(const int& maxPick, int start)
             exclude[h][to] = false;
         }
 
-        if (match)
-            ans = min(ans, m - maxPick);
+        if (match) ans = min(ans, m - maxPick);
 
         return;
     }
@@ -111,7 +106,7 @@ int main() {
     for (int i = 1; i <= m; i++)
         solve(i, 0);
 
-    if (ans == INT_MAX) cout << "1";
+    if (ans == INT_MAX) cout << m;
     else cout << ans;
 
     return 0;
