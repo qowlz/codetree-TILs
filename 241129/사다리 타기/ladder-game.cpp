@@ -111,7 +111,8 @@ int main() {
     for (int i = 1; i <= m; i++)
         solve(i, 0);
 
-    cout << ans;
+    if (ans == INT_MAX) cout << "1";
+    else cout << ans;
 
     return 0;
 }
