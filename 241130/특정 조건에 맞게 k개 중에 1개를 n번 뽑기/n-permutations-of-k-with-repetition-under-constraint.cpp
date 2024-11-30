@@ -5,37 +5,24 @@ using namespace std;
 int n, k;
 vector<int> picked;
 
-bool satisfy()
-{
-    for (int i = 0; i < picked.size(); i++)
-    {
-        if (i + 2 >= picked.size()) continue;
-
-        if (picked[i] == picked[i + 1] && picked[i + 1] == picked[i + 2])
-            return false;
-    }
-
-    return true;
-}
-
 void pick()
 {
     if (picked.size() == n)
     {
-        if (satisfy())
+        for (auto& item : picked)
         {
-            for (auto& item : picked)
-            {
-                cout << item << ' ';
-            }
-            cout << '\n';
+            cout << item << ' ';
         }
+        cout << '\n';
 
         return;
     }
 
     for (int i = 1; i <= k; i++)
     {
+        if (picked.size() >= 2 && i == picked[picked.size() - 1] && i == picked[picked.size() - 2])
+            continue;
+
         picked.push_back(i);
         pick();
         picked.pop_back();
