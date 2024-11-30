@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <unordered_map>
 using namespace std;
 
 int n, k;
@@ -8,10 +7,12 @@ vector<int> picked;
 
 bool satisfy()
 {
-    unordered_map<int, int> m;
-    for (auto& elem : picked)
+    for (int i = 0; i < picked.size(); i++)
     {
-        if (++m[elem] == 3) return false;
+        if (i + 2 >= picked.size()) continue;
+
+        if (picked[i] == picked[i + 1] && picked[i + 1] == picked[i + 2])
+            return false;
     }
 
     return true;
