@@ -6,14 +6,14 @@ using namespace std;
 
 bool cmp(const string& a, const string& b)
 {
-    size_t loop = max(a.length(), b.length());
-    for (size_t i = 0; i < loop; i++)
-    {
-        size_t idxA = min(i, a.length() - 1);
-        size_t idxB = min(i, b.length() - 1);
+    string ab = a + b;
+    string ba = b + a;
 
-        if (a[idxA] == b[idxB]) continue;
-        else return a[idxA] > b[idxB];
+    for (int i = 0; i < ab.length(); i++)
+    {
+        if (ab[i] == ba[i]) continue;
+
+        return ab[i] > ba[i];
     }
 
     return false;
