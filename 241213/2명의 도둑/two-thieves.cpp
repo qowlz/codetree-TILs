@@ -1,18 +1,39 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <tuple>
 
 using namespace std;
 
 int n, m, c;
 vector<vector<int>> arr;
 vector<vector<bool>> visited;
+int selectedValue;
 int totalValue = 0;
+
+int getMaxValue(vector<pair<int, int>>& stuffs, int si, int value, int totalWeight)
+{
+    int best = value;
+    for (int i = si; i < stuffs.size(); i++)
+    {
+        int y, x;
+        tie(y, x) = stuffs[i];
+        if (totalWeight + arr[y][x] > c) continue;
+        
+        int newValue = value + arr[y][x] * arr[y][x];
+        best = max(best, getMaxValue(stuffs, i + 1, newValue, totalWeight + arr[y][x]));
+    }
+
+    return best;
+}
 
 int solve(int sy, int sx, int selectCnt)
 {
     if (selectCnt == 2)
+    {
+        // cout << "totalValue: " << totalValue << endl;
         return totalValue;
+    }
 
     int best = 0;
     for (int i = sy; i < n; i++)
@@ -21,18 +42,20 @@ int solve(int sy, int sx, int selectCnt)
         {
             if (visited[i][j]) continue;
 
-            int totalWeight = 0;
-            int values = 0;
+            vector<pair<int, int>> stuffs;
             for (int k = 0; k < m; k++)
             {
                 if (j + k >= n) break;
 
                 visited[i][j + k] = true;
-
-                totalWeight += arr[i][j + k];
-                if (totalWeight <= c)
-                    values += arr[i][j + k] * arr[i][j + k];
+                stuffs.push_back({i, j + k});
             }
+
+            int values = getMaxValue(stuffs, 0, 0, 0);
+
+            // cout << "i: " << i << ", j: " << j << endl;
+            // cout << "\tselectCnt: " << selectCnt << endl;
+            // cout << "\tvalues: " << values << endl;
 
             totalValue += values;
             
